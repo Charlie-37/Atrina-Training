@@ -1,0 +1,127 @@
+
+//*--------------------SQL DATE TIME----------------*//
+
+//* 1. Write a query to display the first day of the month (in datetime format) three months before the current month.
+
+Ans:
+
+SELECT date(((PERIOD_ADD
+  (EXTRACT(YEAR_MONTH 
+     FROM CURDATE()),-3)*100)+1));
+	 
+//*-------------------------**--------------------------------*//
+ //* 2. Write a query to display the last day of the month (in datetime format) three months before the current month.
+Ans:
+
+ select last_day(date((period_add(extract(year_month from curdate()),-3)*100)));
+ 
+//*-------------------------**--------------------------------*//
+//* 3. Write a query to get the distinct Mondays from hire_date in employees tables.
+
+Ans:
+
+select distinct(str_to_date(concat(yearweek(hire_date),'1'),'%x%v%w')) from employees;
+Ans:
+
+//*-------------------------**--------------------------------*//
+//* 4. Write a query to get the first day of the current year.
+Ans:
+
+ select makedate(extract(year from curdate()),01);
+
+//*-------------------------**--------------------------------*//
+//* 5 Write a query to get the last day of the current year.
+
+
+Ans:
+
+SELECT STR_TO_DATE(CONCAT(12,31,
+      EXTRACT(YEAR FROM CURDATE())), '%m%d%Y');
+
+//*-------------------------**--------------------------------*//
+
+//* 6.Write a query to calculate the age in year.
+
+Ans:
+
+SELECT YEAR(CURRENT_TIMESTAMP) - 
+         YEAR("1967-06-08") - 
+             (RIGHT(CURRENT_TIMESTAMP, 5) < 
+                  RIGHT("1967-06-08", 5)) as age;
+
+//*-------------------------**--------------------------------*//
+
+//* 7. Write a query to get the current date in the following format.
+Ans:
+ select date_format(curdate(),'%M %e %Y');
+
+
+//*-------------------------**--------------------------------*//
+//* 8. Write a query to get the current date in Thursday September 2014 format. Go to the editor
+Thursday September 2014
+
+Ans:
+
+select date_format(curdate(),'%W %M %Y');
+
+
+//*-------------------------**--------------------------------*//
+
+//* 9. Write a query to get the DATE value from a given day (number in N).
+Ans:
+
+select from_days(730677);
+
+//*-------------------------**--------------------------------*//
+ //* 10. Write a query to get the first name and hire date from employees table where hire date between '1987-06-01' and '1987-07-30'.
+Ans:
+
+select first_name, hire_date from employees where hire_date between '1987-06-01' and '1987-07-30';
+
+
+
+//*----------------------------------**-------------------------------//
+14. Write a query to display the current date in the following format. Go to the editor
+Sample output: 12:00 AM Sep 5, 2014
+Ans: 
+
+select date_format(current_timestamp(),'%r %b %e, %Y');
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 
+
+
+//*----------------------------------**-------------------------------//
+
+Ans: 

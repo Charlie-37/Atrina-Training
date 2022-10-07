@@ -1,0 +1,190 @@
+
+//*----1.-- Create database Atrina
+
+Ans : 
+  create database atriina;
+
+//*---2.-- Create Employees Table
+-- It should contain First Name, Last Name, Date of Joining, Reporting Manager
+-- Employee ID should be auto incrementing int
+-- Reporting Manager should be id of the reporting manager
+-- Some employees can have no reporting manager-----//
+
+Ans : 
+create table employee(employee_id int primary key auto_increment,first_name char(30),last_name char(20),date_of_joining date,reporting_manager int);
+
+//* 2. -- Create 10 employees
+-- First name will be Employee and Last name will be identifiers given as below
+-- A has no reporting manager
+-- A1, A2, A3, A4 has reporting manager A
+-- B has no reporting manager
+-- B1, B2 has reporting manager B
+-- C has no reporting manager
+-- C1 has reporting manager C----*//
+
+Ans:
+
+insert into employee(employee_id,first_name,last_name,date_of_joining,reporting_manager) values(100,'Sanjay','Datt','2022-03-23',null);
+insert into employee(first_name,last_name,date_of_joining,reporting_manager) values('Suraj','kishor','2022-05-03',100);
+insert into employee(first_name,last_name,date_of_joining,reporting_manager) values('Sunil','Bhave','2022-04-13',100);
+insert into employee(first_name,last_name,date_of_joining,reporting_manager) values('bhavesh','ainkar','2022-04-30',100);
+
+insert into employee(first_name,last_name,date_of_joining,reporting_manager) values('Amol','Gupta','2022-09-01',105),
+('Akash','Rao','2022-09-12',105);
+
+OUTPUT:
+
+employee_id,    first_name,    last_name,    date_of_joining,    reporting_manager,   
+100	            Sanjay	       Datt	         2022-03-23	         		                
+101	            Suraj	       kishor	     2022-05-03	         100	                
+102	            Sunil	       Bhave	     2022-04-13	         100	               
+103	            bhavesh	       ainkar	     2022-04-30	         100	                
+104	            Rutuja	       Sawant	     2022-06-20	         100	               
+105	            Ruchita	       Gurav	     2022-04-17	         		                
+106	            Amol	       Gupta	     2022-09-01	         105	                
+107	            Akash	       Rao		     2022-09-12	         105	                
+108	            Prasad	       Jadhav	     2022-09-22	         	                    
+109	            Tushar	       Guru		     2022-06-30	         108	                
+					
+
+//*----3.-- Write a query that returns all the employees and their reporting managers
+-- Query should contain below columns
+-- e_fname, e_lname, rm_fname, rm_lname
+
+Ans:
+
+select e.first_name as e_fname,e.last_name as e_lname, f.first_name as rm_fname, f.last_name as rm_lname
+from employee e inner join employee f 
+on e.reporting_manager = f.employee_id;
+
+OUTPUT:
+
+e_fname,    e_lname,    rm_fname,    rm_lname
+Suraj	    kishor	     Sanjay	     Datt
+Sunil	    Bhave	     Sanjay	     Datt
+bhavesh	    ainkar	     Sanjay	     Datt
+Rutuja	    Sawant	     Sanjay	     Datt
+Amol	    Gupta	     Ruchita     Gurav
+Akash	    Rao	         Ruchita     Gurav
+Tushar	    Guru	     Prasad	     Jadhav
+
+
+//* ----4. -- Create Projects Table
+-- It should contain project name
+-- Project ID should be auto incrementing int
+-- Add three projects as given below
+-- P1, P2, P3
+
+Ans:
+
+create table project(project_id varchar(20), project_name char(30));
+insert into project(project_id, project_name) values('P1','Spark'),('P2','Hector'),('P3','1Fainance');
+
+//*----5.-- Add column project_id in employees table to identify the project the employee is working on
+-- There can be a case where an employee is not working on a project
+
+Ans:
+
+alter table employee add column project_id varchar(20)
+
+
+//*----6.-- Write queries to update projects for employees as follows
+-- A1, A2, A3, A4 to be working on P1
+-- B, B1, A to be working on P2
+-- C1 to be working on P3
+
+
+
+//*----7.-- Write queries to update projects for employees as follows
+-- A1, A2, A3, A4 to be working on P1
+-- B, B1, A to be working on P2
+-- C1 to be working on P3
+
+Ans:
+
+update employee set project_id = 'P1' where employee_id = (101);
+update employee set project_id = 'P1' where employee_id = (102);
+update employee set project_id = 'P1' where employee_id = (103);
+update employee set project_id = 'P1' where employee_id = (104);
+
+OUTPUT:
+
+	employee_id	first_name	last_name	date_of_joining	reporting_manager	project_id
+	100		    Sanjay	     Datt	     2022-03-23		                    P2
+	101		    Suraj	     kishor	     2022-05-03	     101	            P1
+	102		    Sunil	     Bhave	     2022-04-13	     101	            P1
+	103		    bhavesh	     ainkar	     2022-04-30	     101	            P1
+	104		    Rutuja	     Sawant	     2022-06-20	     101	            P1
+	105		    Ruchita	     Gurav	     2022-04-17	     	                P2
+	106		    Amol	     Gupta	     2022-09-01	     105	            P2
+	107		    Akash	     Rao	     2022-09-12	     105	            
+	108		    Prasad	     Jadhav	     2022-09-22	     	                
+	109		    Tushar	     Guru	     2022-06-30	     108	            P3
+	
+	
+//*----8.-- Write a query to get all employees working on some project
+-- Query should contain below columns
+-- e_fname, e_lname, p_name
+
+Ans:
+
+select e.first_name as e_fname, e.last_name as e_lname ,p.project_name as p_name from employee e
+inner join project p on (if any)
+e.project_id = p.project_id
+
+OUTPUT:
+
+	employee_id	e_fname	    e_lname	    p_name
+	100	         Sanjay	    Datt	    Hector
+	101	         Suraj	    kishor	    Spark
+	102	         Sunil	    Bhave	    Spark
+	103	         bhavesh    ainkar	    Spark
+	104	         Rutuja	    Sawant	    Spark
+	105	         Ruchita    Gurav	    Hector
+	106	         Amol	    Gupta	    Hector
+	109	         Tushar	    Guru	    1Fainance
+	
+	
+
+//*9.-- Create Clients table
+-- It should contain client's name, project ID 
+-- Client ID should be auto incrementing int 
+
+-- Add clients as given below
+-- P1C1, P1C2 are clients for Project P1
+-- P2C1 is the client for Project P2
+-- P3C1, P3C2, P3C3, P3C4 are the clients for Project P3
+
+Ans:
+
+insert into client values('P1C1','P1'),('P2C2','P1'),('P2C1','P2'),('P3C1','P3'),('P3C2','P3'),('P3C3','P3'),('P3C4','P3');
+
+OUTPUT : 
+
+  client_id, project_id
+  P1C1	     P1
+  P2C2	     P1
+  P2C1	     P2
+  P3C1	     P3
+  P3C2	     P3
+  P3C3	     P3
+  P3C4	     P3
+
+
+//* 10.-- Write a query to get all the projects, number of employees working on the project and number of clients the project has
+-- Query should contain following columns
+-- p_id, p_name, num_of_employees, num_of_clients
+
+Ans:
+
+select e.project_id as p_id,p.project_name as p_name,count(e.employee_id) as no_of_employees, no_of_client from employee e inner join 
+(select c.project_id, count(client_id) as no_of_client,p.project_name from client c inner join project p on c.project_id = p.project_id group by project_id) as p 
+on e.project_id = p.project_id
+group by e.project_id;
+
+
+OUTPUT:
+p_id, p_name,     no_of_employees,   no_of_client
+P1	  Spark	      4	                 2
+P2	  Hector	  3	                 1
+P3	  1Fainance	  1	                 4

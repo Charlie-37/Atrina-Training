@@ -1,0 +1,369 @@
+
+//**-------------------------MYSQL (Meeting Question)-------------------*//
+
+//*----------ROLL BACK----------------**//
+
+
+//* First WE Need to SET AUTOCOMMIT = FALSE
+    Then Restart the MYSQL CMD
+
+
+MariaDB [atrina]> set autocommit = false;
+Query OK, 0 rows affected (0.000 sec)
+
+//*---------After Restarting the CMD------------*//
+
+MariaDB [atrina]> create table student(id int auto_increment primary key, name varchar(20), percentage int);
+Query OK, 0 rows affected (0.048 sec)
+
+MariaDB [atrina]> desc student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| percentage | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.026 sec)
+
+
+MariaDB [atrina]> insert into student(name,percentage) values('Sunil',85),('Bhavesh',65),('Tejas',25),('sagar',78);
+Query OK, 4 rows affected (0.052 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  3 | Tejas   |         25 |
+|  4 | sagar   |         78 |
++----+---------+------------+
+4 rows in set (0.000 sec)
+
+
+
+//*----Write COMMIT manualy (Since you disable the autocommit)---***//
+
+//*----Always start Coding With BEGIN-----*//
+
+MariaDB [atrina]> begin;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [atrina]> update student set percentage=35 where id=3;
+Query OK, 1 row affected (0.000 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  3 | Tejas   |         35 |
+|  4 | sagar   |         78 |
++----+---------+------------+
+4 rows in set (0.000 sec)
+
+//*------- Now the Roll Back Query---*//
+
+MariaDB [atrina]> rollback;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  3 | Tejas   |         25 |
+|  4 | sagar   |         78 |
++----+---------+------------+
+4 rows in set (0.000 sec)
+
+MariaDB [atrina]>
+
+//*------------------DIfference Between TRUNCATE, DELETE And DROP---------*//
+
+// 1. Delete Table  
+
+
+MariaDB [atrina]> begin;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [atrina]> delete from student;
+Query OK, 4 rows affected (0.001 sec)
+
+MariaDB [atrina]> select * from student;
+Empty set (0.000 sec)
+
+MariaDB [atrina]> desc student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| percentage | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.011 sec)
+
+MariaDB [atrina]> rollback;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  3 | Tejas   |         25 |
+|  4 | sagar   |         78 |
++----+---------+------------+
+4 rows in set (0.000 sec)
+
+MariaDB [atrina]>
+
+//* NOTE : Using Delete we can Delete whole record or single record
+		   The Structure of the Table remains
+		   We can RollBack (commit should not be done)
+		   
+//*--------------------------**-----------------------------------*//		   
+
+//* 2. TRUNCATE Table
+
+MariaDB [atrina]> truncate table student;
+Query OK, 0 rows affected (0.015 sec)
+
+MariaDB [atrina]> select * from student;
+Empty set (0.001 sec)
+
+MariaDB [atrina]> desc student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| percentage | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.009 sec)
+
+MariaDB [atrina]>
+
+
+//* NOTE:  Using Truncate we Can delete all the Record of Data.
+			Structure of the table Remains and it cannot be RollBack
+			
+//*--------------------------**-----------------------------------*//	
+
+//* 3. Drop Table
+
+MariaDB [atrina]> drop table student;
+Query OK, 0 rows affected (0.025 sec)
+
+MariaDB [atrina]> select * from student;
+ERROR 1146 (42S02): Table 'atrina.student' doesn't exist
+MariaDB [atrina]> desc student;
+ERROR 1146 (42S02): Table 'atrina.student' doesn't exist
+MariaDB [atrina]>
+
+//* NOTE: DROP TABLE deletes all the data with its Structure and it cannot be ROLLBACK
+
+
+
+//*--------------AUTO INCREMENET Discussion-------------------*//
+
+//*-- Table Creation with Auto Increment------------*//
+
+MariaDB [atrina]> create table student(id int auto_increment primary key, name varchar(20), percentage int);
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [atrina]> insert into student(name,percentage) values('Sunil',85),('Bhavesh',65),('Tejas',25),('sagar',78);
+Query OK, 4 rows affected (0.007 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  3 | Tejas   |         25 |
+|  4 | sagar   |         78 |
++----+---------+------------+
+4 rows in set (0.000 sec)
+
+MariaDB [atrina]> 
+
+//*-------------Lets DELETE the table (Remove all the Record and ADD a new Value)-------*//
+
+
+MariaDB [atrina]> delete from student;
+Query OK, 4 rows affected (0.000 sec)
+
+MariaDB [atrina]> select * from student;
+Empty set (0.000 sec)
+
+MariaDB [atrina]> desc student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| percentage | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.013 sec)
+
+MariaDB [atrina]> insert into student(name,percentage) values('Vishal',45);
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [atrina]> select * from student;
++----+--------+------------+
+| id | name   | percentage |
++----+--------+------------+
+|  5 | Vishal |         45 |
++----+--------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [atrina]>
+
+//* Result:  By deleting all Record and inserting the new value, the AUTO_INCREMENT continues from the previous last record
+
+
+//*---------------------------**---------------------------//
+
+//* To Reset the AUTO INCREMENETwe need to Truncate the Table;
+
+MariaDB [atrina]> truncate table student;
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [atrina]> select * from student;
+Empty set (0.001 sec)
+
+MariaDB [atrina]> desc student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| percentage | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.014 sec)
+
+MariaDB [atrina]> insert into student(name,percentage) values('Sujay',85);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [atrina]> select * from student;
++----+-------+------------+
+| id | name  | percentage |
++----+-------+------------+
+|  1 | Sujay |         85 |
++----+-------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [atrina]>
+
+//* RESULT: Now the Auto Increment got reset and we can start from Fresh;
+
+//*--------------------------**---------------------------//
+
+//*--- Filling the Gap of the auto_increment-------*//
+
+
+//* Sample Table
+
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  5 | Mohit   |         45 |
+|  6 | Rutu    |         15 |
+|  8 | Ankit   |         68 |
++----+---------+------------+
+5 rows in set (0.000 sec)
+
+//* If we add a value
+
+MariaDB [atrina]> insert into student(name,percentage) values('Harshal',75);
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [atrina]> select * from student;
++----+---------+------------+
+| id | name    | percentage |
++----+---------+------------+
+|  1 | Sunil   |         85 |
+|  2 | Bhavesh |         65 |
+|  5 | Mohit   |         45 |
+|  6 | Rutu    |         15 |
+|  8 | Ankit   |         68 |
+|  9 | Harshal |         75 |
++----+---------+------------+
+6 rows in set (0.000 sec)
+
+MariaDB [atrina]>
+
+//* The Gap does not get Filled, TO resolve this Issue
+
+MariaDB [atrina]> set @autoid:= 0;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [atrina]> update student set id = @autoid := (@autoid+1);
+Query OK, 9 rows affected (0.004 sec)
+Rows matched: 9  Changed: 9  Warnings: 0
+
+MariaDB [atrina]> alter table student auto_increment = 1;
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [atrina]> select * from student;
++----+----------+------------+
+| id | name     | percentage |
++----+----------+------------+
+| 10 | Sunil    |         85 |
+| 11 | Bhavesh  |         65 |
+| 12 | Mohit    |         45 |
+| 13 | Rutu     |         15 |
+| 14 | Ankit    |         68 |
+| 15 | Harshal  |         75 |
+| 16 | Sahil    |         95 |
+| 17 | Shaankar |          5 |
+| 18 | jay      |         75 |
++----+----------+------------+
+9 rows in set (0.007 sec)
+
+//* After Adding new Value we get
+
+
+MariaDB [atrina]> insert into student(name,percentage) values('Himu',23);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [atrina]> select * from student;
++----+----------+------------+
+| id | name     | percentage |
++----+----------+------------+
+| 10 | Sunil    |         85 |
+| 11 | Bhavesh  |         65 |
+| 12 | Mohit    |         45 |
+| 13 | Rutu     |         15 |
+| 14 | Ankit    |         68 |
+| 15 | Harshal  |         75 |
+| 16 | Sahil    |         95 |
+| 17 | Shaankar |          5 |
+| 18 | jay      |         75 |
+| 19 | Himu     |         23 |
++----+----------+------------+
+10 rows in set (0.000 sec)
+
+MariaDB [atrina]>
+
+
+
+
+
+
+
+
+	 

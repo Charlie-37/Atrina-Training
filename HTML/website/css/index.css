@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.navbar{
+    background: #000;
+}
+navbar-brand{
+    font-size: 35px;
+    color: white;
+}
+.navbar-nav{
+    margin-right: 30px;
+}
+.nav-link{
+    color: white;
+    font-size: 20px;
+}
+
+/*------------Banner-----*/
+
+#banner{
+    /* border: 2px solid red; */
+    height: 90vh;
+    width: 100%;
+    background-image: url(../images/Online-shopping-retail-2-adobe.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card{
+    top:18%;
+    left: 20%;
+    padding: 20px;
+    height: 60%;
+}
+
+input[type='text'],input[type='password']{
+    background-color: transparent;
+    border: none;
+    color: Black;
+    border-bottom: 3px solid rgb(0, 72, 255);
+
+
+}
+input[type='text']::placeholder,input[type='password']::placeholder {    
+    color: black;
+    tab-size: 10px;
+    left: 0;
+  }

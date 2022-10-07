@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.navbar{
+    background: #000;
+}
+navbar-brand{
+    font-size: 35px;
+    color: white;
+}
+.navbar-nav{
+    margin-right: 30px;
+}
+.nav-link{
+    color: white;
+    font-size: 20px;
+}
+
+/*------Banner----------*/
+
+#banner h1{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 32px;
+    text-decoration: underline rgb(6, 213, 224) 2px;
+    text-underline-offset: 10px;
+}
+.row{
+    border-radius: 10px;
+    margin-top: 50px;
+    background:linear-gradient(rgba(0, 217, 255, 0.796),rgba(31, 179, 179, 0.484), rgb(251, 251, 251)) ;
+}
+#regForm{
+    padding: 20px;
+}
+#regForm input{
+    background-color: transparent;
+    height: 40px;
+    border: none;
+    color: black;
+    border-bottom: 2px solid rgb(0, 183, 255);
+}
+#regForm input::placeholder{
+    color: black;
+}

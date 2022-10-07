@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #spni{
+            margin-top: 30px;
+            display: none;
+        }
+        #getData{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">AJAX Preloder</h1>
+
+    <div id="spni">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+    </div>
+
+
+    <button class="btn-primary m-5" id="getData">Get Data</button>
+    <div class="row">
+        <div class="card" id="Card">
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#getData').click(function(){
+
+                $.ajax({
+                    type : 'GET' ,
+                    url : 'https://jsonplaceholder.typicode.com/photos',
+                    dataType : 'json',
+
+                    // data : {
+                    //     id : 1,
+                    //     // title : 'accusamus beatae ad facilis cum similique qui sunt'
+                    // },
+
+                    beforeSend : function(){
+                        $('#spni').show()
+
+                    },
+                    complete : function(){
+                        $('#spni').hide()
+                    },
+                    success : function(data){
+                        console.log(data)
+                       let output = ''
+                        for(var i in data){
+                            output +=`
+                            <ul>
+                                <li>${data[i].id}</li>
+                                <li>${data[i].title}</li>
+                                <li><img src='${data[i].url} height='50px' width='50px'></li>
+                            </ul>
+                            `;
+
+                        };
+                        $('#Card').html(output)
+                    },
+                    error : function(){
+                        console.log('error')
+                    },
+
+                    
+                })
+            })
+        })
+    </script>
+
+</body>
+</html>

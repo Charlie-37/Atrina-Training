@@ -1,0 +1,639 @@
+
+
+# //*--------------MYSQL MariaDB---------------*//
+//* 1. Create Database
+Ans:
+
+Create database atrina;
+
+//*---------------------**-------------------------//
+
+//* 2. Create Table
+Ans:
+
+Create table table_name(column_name datatype);
+
+//*---------------------**-------------------------//
+//* 3. Drop Table
+Ans:
+
+Drop table table_name;
+
+
+//*---------------------**-------------------------//
+//* 4. Insert Value in Database
+Ans:
+
+Insert into table_name values();
+
+//*---------------------**-------------------------//
+//* 5. Drop Table
+Ans:
+
+Drop table table_name;
+
+
+//*---------------------**-------------------------//
+//* 6. Select Record
+Ans:
+
+Select * from table
+
+//*---------------------**-------------------------//
+
+//* 7. Select Limit
+Ans: It is used to show required number of rows
+
+MariaDB [atrina]> select * from employees Limit 10;
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL    | PHONE_NUMBER | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+|         100 | Steven     | King      | SKING    | 515.123.4567 | 1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          0 |            90 |
+|         101 | Neena      | Kochhar   | NKOCHHAR | 515.123.4568 | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+|         102 | Lex        | De Haan   | LDEHAAN  | 515.123.4569 | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+|         103 | Alexander  | Hunold    | AHUNOLD  | 590.423.4567 | 1987-06-20 | IT_PROG    |  9000.00 |           0.00 |        102 |            60 |
+|         104 | Bruce      | Ernst     | BERNST   | 590.423.4568 | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |        103 |            60 |
+|         105 | David      | Austin    | DAUSTIN  | 590.423.4569 | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 |
+|         106 | Valli      | Pataballa | VPATABAL | 590.423.4560 | 1987-06-23 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 |
+|         107 | Diana      | Lorentz   | DLORENTZ | 590.423.5567 | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |        103 |            60 |
+|         108 | Nancy      | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |        101 |           100 |
+|         109 | Daniel     | Faviet    | DFAVIET  | 515.124.4169 | 1987-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |        108 |           100 |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+10 rows in set (0.001 sec)
+
+//*---------------------**-------------------------//
+
+//* 11. Alter Table
+
+Ans: Used to update, delete, move column of a table.
+
+alter table employees add column dob date;
+MariaDB [atrina]> select * from employees;
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+------+
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID | dob  |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+------+
+|         100 | Steven      | King        | SKING    | 515.123.4567       | 1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          0 |            90 | NULL |
+|         101 | Neena       | Kochhar     | NKOCHHAR | 515.123.4568       | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |        100 |            90 | NULL |
+|         102 | Lex         | De Haan     | LDEHAAN  | 515.123.4569       | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |        100 |            90 | NULL |
+|         103 | Alexander   | Hunold      | AHUNOLD  | 590.423.4567       | 1987-06-20 | IT_PROG    |  9000.00 |           0.00 |        102 |            60 | NULL |
+|         104 | Bruce       | Ernst       | BERNST   | 590.423.4568       | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |        103 |            60 | NULL |
+|         105 | David       | Austin      | DAUSTIN  | 590.423.4569       | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 | NULL |
+|         106 | Valli       | Pataballa   | VPATABAL | 590.423.4560       | 1987-06-23 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 | NULL |
+|         107 | Diana       | Lorentz     | DLORENTZ | 590.423.5567       | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |        103 |            60 | NULL |
+|         108 | Nancy       | Greenberg   | NGREENBE | 515.124.4569       | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |        101 |           100 | NULL |
+
+
+
+//*---------------------**-------------------------//
+
+//* 12 Update Table
+Ans: Used to update delete row values
+
+MariaDB [atrina]> update employees set department_id = 60 where employee_id = 101;
+Query OK, 1 row affected (0.015 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [atrina]> select * from employees;
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+|         100 | Steven      | King        | SKING    | 515.123.4567       | 1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          0 |            90 |
+|         101 | Neena       | Kochhar     | NKOCHHAR | 515.123.4568       | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |        100 |            60 |
+|         102 | Lex         | De Haan     | LDEHAAN  | 515.123.4569       | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+|         103 | Alexander   | Hunold      | AHUNOLD  | 590.423.4567       | 1987-06-20 | IT_PROG    |  9000.00 |           0.00 |        102 |            60 |
+|         104 | Bruce       | Ernst       | BERNST   | 590.423.4568       | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |        103 |            60 |
+
+
+//*---------------------**-------------------------//
+
+//* 13. delete Data
+
+Ans: 
+
+MariaDB [atrina]> delete from employees where employee_id = 101;
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [atrina]> select * from employees;
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+|         100 | Steven      | King        | SKING    | 515.123.4567       | 1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          0 |            90 |
+|         102 | Lex         | De Haan     | LDEHAAN  | 515.123.4569       | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+
+
+//*---------------------**-------------------------//
+
+//* 14. Truncate Table
+Ans: Truncate Deletes all data but Structure Remains
+
+MariaDB [atrina]> truncate employees;
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [atrina]> select * from employees;
+Empty set (0.007 sec)
+
+MariaDB [atrina]> desc employees;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| EMPLOYEE_ID    | decimal(6,0) | NO   | PRI | 0       |       |
+| FIRST_NAME     | varchar(20)  | YES  |     | NULL    |       |
+| LAST_NAME      | varchar(25)  | NO   | MUL | NULL    |       |
+| EMAIL          | varchar(25)  | NO   | UNI | NULL    |       |
+| PHONE_NUMBER   | varchar(20)  | YES  |     | NULL    |       |
+| HIRE_DATE      | date         | NO   |     | NULL    |       |
+| JOB_ID         | varchar(10)  | NO   | MUL | NULL    |       |
+| SALARY         | decimal(8,2) | YES  |     | NULL    |       |
+| COMMISSION_PCT | decimal(2,2) | YES  |     | NULL    |       |
+| MANAGER_ID     | decimal(6,0) | YES  | MUL | NULL    |       |
+| DEPARTMENT_ID  | decimal(4,0) | YES  | MUL | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+11 rows in set (0.021 sec)
+
+//*---------------------**-------------------------//
+
+//* 15. Where Clause
+Ans:
+
+MariaDB [atrina]> select * from employees where department_id = 100;
++-------------+-------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME | EMAIL    | PHONE_NUMBER | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+-------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+|         108 | Nancy       | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |        101 |           100 |
+|         109 | Daniel      | Faviet    | DFAVIET  | 515.124.4169 | 1987-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |        108 |           100 |
+|         110 | John        | Chen      | JCHEN    | 515.124.4269 | 1987-06-27 | FI_ACCOUNT |  8200.00 |           0.00 |        108 |           100 |
+|         111 | Ismael      | Sciarra   | ISCIARRA | 515.124.4369 | 1987-06-28 | FI_ACCOUNT |  7700.00 |           0.00 |        108 |           100 |
+|         112 | Jose Manuel | Urman     | JMURMAN  | 515.124.4469 | 1987-06-29 | FI_ACCOUNT |  7800.00 |           0.00 |        108 |           100 |
+|         113 | Luis        | Popp      | LPOPP    | 515.124.4567 | 1987-06-30 | FI_ACCOUNT |  6900.00 |           0.00 |        108 |           100 |
++-------------+-------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+//*---------------------**-------------------------//
+
+//* 16. Like operator
+Ans:
+
+MariaDB [atrina]> select * from employees where first_name like '%s';  
+i.e 
+'%a' : Gives values ending with 'a'
+'a%' : Gives values starting with 'a'
+'_a%' : Gives values where second charaacter should be 'a'
+
++-------------+------------+-----------+----------+--------------------+------------+------------+---------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID     | SALARY  | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+----------+--------------------+------------+------------+---------+----------------+------------+---------------+
+|         113 | Luis       | Popp      | LPOPP    | 515.124.4567       | 1987-06-30 | FI_ACCOUNT | 6900.00 |           0.00 |        108 |           100 |
+|         127 | James      | Landry    | JLANDRY  | 650.124.1334       | 1987-07-14 | ST_CLERK   | 2400.00 |           0.00 |        120 |            50 |
+|         131 | James      | Marlow    | JAMRLOW  | 650.124.7234       | 1987-07-18 | ST_CLERK   | 2500.00 |           0.00 |        121 |            50 |
+|         142 | Curtis     | Davies    | CDAVIES  | 650.121.2994       | 1987-07-29 | ST_CLERK   | 3100.00 |           0.00 |        124 |            50 |
+|         179 | Charles    | Johnson   | CJOHNSON | 011.44.1644.429262 | 1987-09-04 | SA_REP     | 6200.00 |           0.10 |        149 |            80 |
+|         185 | Alexis     | Bull      | ABULL    | 650.509.2876       | 1987-09-10 | SH_CLERK   | 4100.00 |           0.00 |        121 |            50 |
+|         199 | Douglas    | Grant     | DGRANT   | 650.507.9844       | 1987-09-24 | SH_CLERK   | 2600.00 |           0.00 |        124 |            50 |
++-------------+------------+-----------+----------+--------------------+------------+------------+---------+----------------+------------+---------------+
+
+//*---------------------**-------------------------//
+
+ //*  17. Order By Clause
+ Ans:
+ 
+ MariaDB [atrina]> select * from employees where job_id = 'st_clerk' ORDER BY manager_id;
++-------------+------------+-------------+----------+--------------+------------+----------+---------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME   | EMAIL    | PHONE_NUMBER | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-------------+----------+--------------+------------+----------+---------+----------------+------------+---------------+
+|         125 | Julia      | Nayer       | JNAYER   | 650.124.1214 | 1987-07-12 | ST_CLERK | 3200.00 |           0.00 |        120 |            50 |
+|         126 | Irene      | Mikkilineni | IMIKKILI | 650.124.1224 | 1987-07-13 | ST_CLERK | 2700.00 |           0.00 |        120 |            50 |
+|         127 | James      | Landry      | JLANDRY  | 650.124.1334 | 1987-07-14 | ST_CLERK | 2400.00 |           0.00 |        120 |            50 |
+|         128 | Steven     | Markle      | SMARKLE  | 650.124.1434 | 1987-07-15 | ST_CLERK | 2200.00 |           0.00 |        120 |            50 |
+|         132 | TJ         | Olson       | TJOLSON  | 650.124.8234 | 1987-07-19 | ST_CLERK | 2100.00 |           0.00 |        121 |            50 |
+|         131 | James      | Marlow      | JAMRLOW  | 650.124.7234 | 1987-07-18 | ST_CLERK | 2500.00 |           0.00 |        121 |            50 |
+|         130 | Mozhe      | Atkinson    | MATKINSO | 650.124.6234 | 1987-07-17 | ST_CLERK | 2800.00 |           0.00 |        121 |            50 |
+|         129 | Laura      | Bissot      | LBISSOT  | 650.124.5234 | 1987-07-16 | ST_CLERK | 3300.00 |           0.00 |        121 |            50 |
+|         136 | Hazel      | Philtanker  | HPHILTAN | 650.127.1634 | 1987-07-23 | ST_CLERK | 2200.00 |           0.00 |        122 |            50 |
+|         135 | Ki         | Gee         | KGEE     | 650.127.1734 | 1987-07-22 | ST_CLERK | 2400.00 |           0.00 |        122 |            50 |
+|         134 | Michael    | Rogers      | MROGERS  | 650.127.1834 | 1987-07-21 | ST_CLERK | 2900.00 |           0.00 |        122 |            50 |
+|         133 | Jason      | Mallin      | JMALLIN  | 650.127.1934 | 1987-07-20 | ST_CLERK | 3300.00 |           0.00 |        122 |            50 |
+|         140 | Joshua     | Patel       | JPATEL   | 650.121.1834 | 1987-07-27 | ST_CLERK | 2500.00 |           0.00 |        123 |            50 |
+|         139 | John       | Seo         | JSEO     | 650.121.2019 | 1987-07-26 | ST_CLERK | 2700.00 |           0.00 |        123 |            50 |
+|         138 | Stephen    | Stiles      | SSTILES  | 650.121.2034 | 1987-07-25 | ST_CLERK | 3200.00 |           0.00 |        123 |            50 |
+|         137 | Renske     | Ladwig      | RLADWIG  | 650.121.1234 | 1987-07-24 | ST_CLERK | 3600.00 |           0.00 |        123 |            50 |
+|         141 | Trenna     | Rajs        | TRAJS    | 650.121.8009 | 1987-07-28 | ST_CLERK | 3500.00 |           0.00 |        124 |            50 |
+|         142 | Curtis     | Davies      | CDAVIES  | 650.121.2994 | 1987-07-29 | ST_CLERK | 3100.00 |           0.00 |        124 |            50 |
+|         143 | Randall    | Matos       | RMATOS   | 650.121.2874 | 1987-07-30 | ST_CLERK | 2600.00 |           0.00 |        124 |            50 |
+|         144 | Peter      | Vargas      | PVARGAS  | 650.121.2004 | 1987-07-31 | ST_CLERK | 2500.00 |           0.00 |        124 |            50 |
++-------------+------------+-------------+----------+--------------+------------+----------+---------+----------------+------------+---------------+
+
+
+//*---------------------**-------------------------//
+//* 18 Distinct()
+Ans:
+
+MariaDB [atrina]> select distinct(department_id) from employees;
++---------------+
+| department_id |
++---------------+
+|             0 |
+|            10 |
+|            20 |
+|            30 |
+|            40 |
+|            50 |
+|            60 |
+|            70 |
+|            80 |
+|            90 |
+|           100 |
+|           110 |
++---------------+
+12 rows in set (0.005 sec)
+
+//*---------------------**-------------------------//
+
+//* 19. Count()
+Ans:
+MariaDB [atrina]> select count(manager_id) from employees;
++-------------------+
+| count(manager_id) |
++-------------------+
+|               107 |
++-------------------+
+
+MariaDB [atrina]> select count(manager_id) from employees where job_id = 'st_clerk';
++-------------------+
+| count(manager_id) |
++-------------------+
+|                20 |
++-------------------+
+1 row in set (0.001 sec)
+
+//*---------------------**-------------------------//
+
+//*  20. Sum()
+Ans:
+
+MariaDB [atrina]> select job_id, sum(salary) from employees where job_id = 'st_clerk';
++----------+-------------+
+| job_id   | sum(salary) |
++----------+-------------+
+| ST_CLERK |    55700.00 |
++----------+-------------+
+
+
+//*---------------------**-------------------------//
+//*  21. min()
+Ans:
+
+MariaDB [atrina]> select job_id, min(salary) from employees where job_id = 'st_man';
++--------+-------------+
+| job_id | min(salary) |
++--------+-------------+
+| ST_MAN |     5800.00 |
++--------+-------------+
+1 row in set (0.001 sec)
+
+
+//*---------------------**-------------------------//
+ //* 22. avg()
+Ans:
+
+MariaDB [atrina]> select job_id, avg(salary) from employees where job_id = 'st_man';
++--------+-------------+
+| job_id | avg(salary) |
++--------+-------------+
+| ST_MAN | 7280.000000 |
++--------+-------------+
+1 row in set (0.001 sec)
+
+//*---------------------**-------------------------//
+ //** 23. max()
+Ans:
+
+MariaDB [atrina]> select job_id, max(salary) from employees where job_id = 'st_man';
++--------+-------------+
+| job_id | max(salary) |
++--------+-------------+
+| ST_MAN |     8200.00 |
++--------+-------------+
+1 row in set (0.001 sec)
+
+
+//*---------------------**-------------------------//
+
+//* 25. SELF join
+
+Ans:
+Query: givee the names of the manager wrt manager id using self join
+MariaDB [atrina]> select e.employee_id,e.first_name,e.manager_id, f.first_name from employees e join employees f on e.manager_id = f.employee_id;
++-------------+-------------+------------+------------+
+| employee_id | first_name  | manager_id | first_name |
++-------------+-------------+------------+------------+
+|         101 | Neena       |        100 | Steven     |
+|         102 | Lex         |        100 | Steven     |
+|         103 | Alexander   |        102 | Lex        |
+|         104 | Bruce       |        103 | Alexander  |
+|         105 | David       |        103 | Alexander  |
+|         106 | Valli       |        103 | Alexander  |
+|         107 | Diana       |        103 | Alexander  |
+|         108 | Nancy       |        101 | Neena      |
+|         109 | Daniel      |        108 | Nancy      |
+|         110 | John        |        108 | Nancy      |
+|         111 | Ismael      |        108 | Nancy      |
+|         112 | Jose Manuel |        108 | Nancy      |
+|         113 | Luis        |        108 | Nancy      |
+|         114 | Den         |        100 | Steven     |
+|         115 | Alexander   |        114 | Den        |
+|         116 | Shelli      |        114 | Den        |
+|         117 | Sigal       |        114 | Den        |
+|         118 | Guy         |        114 | Den        |
+
+
+//*---------------------**-------------------------//
+//* 26 Inner Join
+Querry: Give the department name wrt department id
+Ans: 
+
+MariaDB [atrina]> select e.employee_id,e.first_name,e.department_id,d.department_name from employees e INNER JOIN departments d on e.department_id = d.department_id;
++-------------+-------------+---------------+------------------+
+| employee_id | first_name  | department_id | department_name  |
++-------------+-------------+---------------+------------------+
+|         100 | Steven      |            90 | Executive        |
+|         101 | Neena       |            90 | Executive        |
+|         102 | Lex         |            90 | Executive        |
+|         103 | Alexander   |            60 | IT               |
+|         104 | Bruce       |            60 | IT               |
+|         105 | David       |            60 | IT               |
+|         106 | Valli       |            60 | IT               |
+|         107 | Diana       |            60 | IT               |
+|         108 | Nancy       |           100 | Finance          |
+|         109 | Daniel      |           100 | Finance          |
+|         110 | John        |           100 | Finance          |
+|         111 | Ismael      |           100 | Finance          |
+|         112 | Jose Manuel |           100 | Finance          |
+|         113 | Luis        |           100 | Finance          |
+|         114 | Den         |            30 | Purchasing       |
+|         115 | Alexander   |            30 | Purchasing       |
+|         116 | Shelli      |            30 | Purchasing       |
+|         117 | Sigal       |            30 | Purchasing       |
+|         118 | Guy         |            30 | Purchasing       |
+|         119 | Karen       |            30 | Purchasing       |
+|         120 | Matthew     |            50 | Shipping         |
+|         121 | Adam        |            50 | Shipping         |
+
+
+//*---------------------**-------------------------//
+
+//* 27 Left Outer Join
+Ans:
+
+MariaDB [atrina]> select e.employee_id,e.first_name,e.department_id,d.department_name from employees e left JOIN departments d on e.department_id = d.department_id order by department_id asc;
++-------------+-------------+---------------+------------------+
+| employee_id | first_name  | department_id | department_name  |
++-------------+-------------+---------------+------------------+
+|         178 | Kimberely   |             0 | NULL             |
+|         200 | Jennifer    |            10 | Administration   |
+|         202 | Pat         |            20 | Marketing        |
+|         201 | Michael     |            20 | Marketing        |
+|         119 | Karen       |            30 | Purchasing       |
+|         118 | Guy         |            30 | Purchasing       |
+|         117 | Sigal       |            30 | Purchasing       |
+|         115 | Alexander   |            30 | Purchasing       |
+
+//*---------------------**-------------------------//
+//* 28 Right Outer Join
+Ans:
+
+MariaDB [atrina]> select e.employee_id,e.first_name,e.department_id,d.department_name from employees e Right JOIN departments d on e.department_id = d.department_id order by department_id asc;
++-------------+-------------+---------------+----------------------+
+| employee_id | first_name  | department_id | department_name      |
++-------------+-------------+---------------+----------------------+
+|        NULL | NULL        |          NULL | Control And Credit   |
+|        NULL | NULL        |          NULL | Construction         |
+|        NULL | NULL        |          NULL | NOC                  |
+|        NULL | NULL        |          NULL | Recruiting           |
+|        NULL | NULL        |          NULL | Shareholder Services |
+|        NULL | NULL        |          NULL | Contracting          |
+|        NULL | NULL        |          NULL | IT Helpdesk          |
+|        NULL | NULL        |          NULL | Payroll              |
+|        NULL | NULL        |          NULL | Treasury             |
+|        NULL | NULL        |          NULL | Benefits             |
+|        NULL | NULL        |          NULL | Operations           |
+|        NULL | NULL        |          NULL | Government Sales     |
+|        NULL | NULL        |          NULL | Corporate Tax        |
+|        NULL | NULL        |          NULL | Manufacturing        |
+|        NULL | NULL        |          NULL | IT Support           |
+|        NULL | NULL        |          NULL | Retail Sales         |
+|         200 | Jennifer    |            10 | Administration       |
+|         201 | Michael     |            20 | Marketing            |
+|         202 | Pat         |            20 | Marketing            |
+|         115 | Alexander   |            30 | Purchasing           |
+|         119 | Karen       |            30 | Purchasing           |
+|         116 | Shelli      |            30 | Purchasing           |
+|         117 | Sigal       |            30 | Purchasing           |
+|         114 | Den         |            30 | Purchasing           |
+
+//*---------------------**-------------------------//
+
+//* 29.  Union 
+
+Ans: addition of both values 
+
+MariaDB [atrina]> select department_id from employees union select department_id from departments;
++---------------+
+| department_id |
++---------------+
+|             0 |
+|            10 |
+|            20 |
+|            30 |
+|            40 |
+|            50 |
+|            60 |
+|            70 |
+|            80 |
+|            90 |
+|           100 |
+|           110 |
+|           120 |
+|           130 |
+|           140 |
+|           150 |
+|           160 |
+|           170 |
+|           180 |
+|           190 |
+|           200 |
+|           210 |
+|           220 |
+|           230 |
+|           240 |
+|           250 |
+|           260 |
+|           270 |
++---------------+
+28 rows in set (0.008 sec)
+
+
+//*---------------------**-------------------------//
+//* 30 Union all
+Ans: addition of both values (including repeating)
+
+
+MariaDB [atrina]> select department_id from employees union all select department_id from departments;
++---------------+
+| department_id |
++---------------+
+|             0 |
+|            10 |
+|            20 |
+|            20 |
+|            30 |
+|            30 |
+|            30 |
+|            30 |
+|            30 |
+|            30 |
+|            40 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            50 |
+|            60 |
+|            60 |
+|            60 |
+|            60 |
+|            60 |
+|            70 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            80 |
+|            90 |
+|            90 |
+|            90 |
+|           100 |
+|           100 |
+|           100 |
+|           100 |
+|           100 |
+|           100 |
+|           110 |
+|           110 |
+|            10 |
+|            20 |
+|            30 |
+|            40 |
+|            50 |
+|            60 |
+|            70 |
+|            80 |
+|            90 |
+|           100 |
+|           110 |
+|           120 |
+|           130 |
+|           140 |
+|           150 |
+|           160 |
+|           170 |
+|           180 |
+|           190 |
+|           200 |
+|           210 |
+|           220 |
+|           230 |
+|           240 |
+|           250 |
+|           260 |
+|           270 |
++---------------+
+134 rows in set (0.001 sec)
+
+//*---------------------**-------------------------//
+//* 31. Intersect
+Ans: Gives common in both tables
+
+MariaDB [atrina]> select department_id from employees intersect select department_id from departments;
++---------------+
+| department_id |
++---------------+
+|            10 |
+|            20 |
+|            30 |
+|            40 |
+|            50 |
+|            60 |
+|            70 |
+|            80 |
+|            90 |
+|           100 |
+|           110 |
++---------------+
+11 rows in set (0.001 sec)

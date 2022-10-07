@@ -1,0 +1,278 @@
+
+
+//*--------------Table 1 (location)-------------------*//
+
+location_id  street_address        postal_code  city        state_province  country_id
+-----------  --------------------  -----------  ----------  --------------  ----------
+1000         1297 Via Cola di Rie  989          Roma                        IT
+1100         93091 Calle della Te  10934        Venice                      IT
+1200         2017 Shinjuku-ku      1689         Tokyo       Tokyo Prefectu  JP
+1300         9450 Kamiya-cho       6823         Hiroshima                   JP
+1400         2014 Jabberwocky Rd   26192        Southlake   Texas           US
+1500         2011 Interiors Blvd   99236        South San   California      US
+1600         2007 Zagora St        50090        South Brun  New Jersey      US
+1700         2004 Charade Rd       98199        Seattle     Washington      US
+1800         147 Spadina Ave       M5V 2L7      Toronto     Ontario         CA
+1900         6092 Boxwood St       YSW 9T2      Whitehorse  Yukon           CA
+2000         40-5-12 Laogianggen   190518       Beijing                     CN
+2100         1298 Vileparle (E)    490231       Bombay      Maharashtra     IN
+2200         12-98 Victoria Stree  2901         Sydney      New South Wale  AU
+2300         198 Clementi North    540198       Singapore                   SG
+2400         8204 Arthur St                     London                      UK
+2500         Magdalen Centre, The  OX9 9ZB      Oxford      Oxford          UK
+2600         9702 Chester Road     9629850293   Stretford   Manchester      UK
+2700         Schwanthalerstr. 703  80925        Munich      Bavaria         DE
+2800         Rua Frei Caneca 1360  01307-002    Sao Paulo   Sao Paulo       BR
+2900         20 Rue des Corps-Sai  1730         Geneva      Geneve          CH
+3000         Murtenstrasse 921     3095         Bern        BE              CH
+3100         Pieter Breughelstraa  3029SK       Utrecht     Utrecht         NL
+3200         Mariano Escobedo 999  11932        Mexico Cit  Distrito Feder  MX
+
+
+
+//*------------ Table 2 (Countries)---------------------*//
+
+country_id  country_name  region_id
+----------  ------------  ----------
+country_id  country_name  region_id
+AR          Argentina     2
+AU          Australia     3
+BE          Belgium       1
+BR          Brazil        2
+CA          Canada        2
+CH          Switzerland   1
+CN          China         3
+DE          Germany       1
+DK          Denmark       1
+EG          Egypt         4
+FR          France        1
+HK          HongKong      3
+IL          Israel        4
+IN          India         3
+IT          Italy         1
+JP          Japan         3
+KW          Kuwait        4
+MX          Mexico        2
+NG          Nigeria       4
+NL          Netherlands   1
+SG          Singapore     3
+UK          United Kingd  1
+US          United State  2
+ZM          Zambia        4
+ZW          Zimbabwe      4
+
+
+
+
+///**------------------SQL Joins Queries--------------------*//
+
+//* 1. Write a query to find the addresses (location_id, street_address, city, state_province, country_name) of all the departments. Go to the editor
+Hint : Use NATURAL JOIN.
+Ans:
+
+SELECT location_id, street_address, city, state_province, country_name
+FROM locations
+NATURAL JOIN countries;
+
+//***-------------------------------**----------------------------------//////
+
+//*  2. Write a query to find the name (first_name, last name), department ID and name of all the employees. 
+Ans: 
+
+SELECT first_name, last_name, department_id, department_name 
+FROM employees 
+JOIN departments USING (department_id);
+
+//***-------------------------------**----------------------------------//////
+
+//* 3. Write a query to find the name (first_name, last_name), job, department ID and name of the employees who works in London. Go to the editor
+Ans:
+
+SELECT e.first_name, e.last_name, e.job_id, e.department_id, d.department_name 
+FROM employees e 
+JOIN departments d 
+ON (e.department_id = d.department_id) 
+JOIN locations l ON 
+(d.location_id = l.location_id) 
+WHERE LOWER(l.city) = 'London';
+
+//***-------------------------------**----------------------------------//////
+
+//* 4. Write a query to find the employee id, name (last_name) along with their manager_id and name (last_name).
+Ans:
+
+SELECT e.employee_id 'Emp_Id', e.last_name 'Employee', 
+m.employee_id 'Mgr_Id', m.last_name 'Manager' 
+FROM employees e 
+join employees m 
+ON (e.manager_id = m.employee_id);
+
+//***-------------------------------**----------------------------------//////
+
+//* 5.  Write a query to find the name (first_name, last_name) and hire date of the employees who was hired after 'Jones'.
+Ans:
+
+SELECT e.first_name, e.last_name, e.hire_date 
+FROM employees e 
+JOIN employees davies 
+ON (davies.last_name = 'Jones') 
+WHERE davies.hire_date < e.hire_date;
+
+//***-------------------------------**----------------------------------//////
+
+//* 6. Write a query to get the department name and number of employees in the department.
+Ans:
+
+SELECT department_name AS 'Department Name', 
+COUNT(*) AS 'No of Employees' 
+FROM departments 
+INNER JOIN employees 
+ON employees.department_id = departments.department_id 
+GROUP BY departments.department_id, department_name 
+ORDER BY department_name;
+
+//***-------------------------------**----------------------------------//////
+
+/*7. Write a query to find the employee ID, job title, number of days between ending date and starting date for all jobs in department 90.
+Ans:
+
+SELECT employee_id, job_title, end_date-start_date Days FROM job_history 
+NATURAL JOIN jobs 
+WHERE department_id=90;
+
+
+//***-------------------------------**----------------------------------//////
+
+/*8. Write a query to display the department ID and name and first name of manager. Go to the editor
+
+
+Ans:
+
+SELECT d.department_id, d.department_name, d.manager_id, e.first_name 
+FROM departments d 
+INNER JOIN employees e 
+ON (d.manager_id = e.employee_id);
+
+
+
+//***-------------------------------**----------------------------------//////
+
+/* 9. Write a query to display the department name, manager name, and city. Go to the editor
+Ans:
+
+SELECT d.department_name, e.first_name, l.city 
+FROM departments d 
+JOIN employees e 
+ON (d.manager_id = e.employee_id) 
+JOIN locations l USING (location_id);
+
+
+
+//***-------------------------------**----------------------------------//////
+
+//*10. Write a query to display the job title and average salary of employees. Go to the editor
+
+Ans:
+
+SELECT job_title, AVG(salary) 
+FROM employees 
+NATURAL JOIN jobs 
+GROUP BY job_title;
+
+
+//***-------------------------------**----------------------------------//////
+//* 11. Write a query to display job title, employee name, and the difference between salary of the employee and minimum salary for the job.
+Ans:
+
+SELECT job_title, first_name, salary-min_salary 'Salary - Min_Salary' 
+FROM employees 
+NATURAL JOIN jobs;
+
+//***-------------------------------**----------------------------------//////
+
+/* 12. Write a query to display the job history that were done by any employee who is currently drawing more than 10000 of salary.
+Ans:
+
+SELECT jh.* FROM job_history jh 
+JOIN employees e 
+ON (jh.employee_id = e.employee_id) 
+WHERE salary > 10000;
+
+
+//***-------------------------------**----------------------------------//////
+
+//* 13. Write a query to display department name, name (first_name, last_name), hire date, salary of the manager for all managers whose experience is more than 15 years.
+
+Ans:
+
+SELECT first_name, last_name, hire_date, salary, 
+(DATEDIFF(now(), hire_date))/365 Experience 
+FROM departments d JOIN employees e 
+ON (d.manager_id = e.employee_id) 
+WHERE (DATEDIFF(now(), hire_date))/365>15;
+
+
+
+//***-------------------------------**----------------------------------//////
+Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
+
+Microsoft Windows [Version 10.0.22000.856]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\WINDOWS\system32>diskpart
+
+Microsoft DiskPart version 10.0.22000.653
+
+Copyright (C) Microsoft Corporation.
+On computer: DESKTOP-3CFCEM5
+
+DISKPART> list disk
+
+  Disk ###  Status         Size     Free     Dyn  Gpt
+  --------  -------------  -------  -------  ---  ---
+  Disk 0    Online          223 GB  2048 KB        *
+  Disk 1    Online         1863 GB  1024 KB        *
+  Disk 2    Online           14 GB    14 GB        *
+
+DISKPART> select disk 2
+
+Disk 2 is now the selected disk.
+
+DISKPART> attribute disk
+Current Read-only State : No
+Read-only  : No
+Boot Disk  : No
+Pagefile Disk  : No
+Hibernation File Disk  : No
+Crashdump Disk  : No
+Clustered Disk  : No
+
+DISKPART> attribute disk clear readonly
+
+Disk attributes cleared successfully.
+
+DISKPART> attribute disk
+Current Read-only State : No
+Read-only  : No
+Boot Disk  : No
+Pagefile Disk  : No
+Hibernation File Disk  : No
+Crashdump Disk  : No
+Clustered Disk  : No
+
+DISKPART> clean
+
+DiskPart succeeded in cleaning the disk.
+
+DISKPART> create partition primary
+
+DiskPart succeeded in creating the specified partition.
+
+DISKPART> format fs=ntfs
+
+  100 percent completed
+
+DiskPart successfully formatted the volume.
+
+DISKPART>
+
