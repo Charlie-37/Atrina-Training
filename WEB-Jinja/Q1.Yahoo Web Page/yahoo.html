@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="yahoo.css">
+    <title>Yahoo News</title>
+</head>
+<body>
+    <!-- main navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center" style="background-color: rgb(7, 0, 41);">
+        <div class="container-fluid w-75" >
+        
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-light" id="navbarNav">
+            <ul class="navbar-nav text-light">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">MAIL</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">NEWS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">FINANCE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">SPORTS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">ENTERTAINMENT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">LIFE</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">SEARCH</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">SHOPPING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">YAHOO PLUS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">More ..</a>
+              </li>
+
+              
+            </ul>
+          </div>
+
+          <a class="navbar-brand text-light" href="#" id="brand">yahoo <i>!</i> <sup>+</sup>  <button class="nb_btn">Upgrade Now</button></a>
+        </div>
+      </nav>
+
+
+      <section id="MainContainer">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="SecndNav">
+            <div class="container-fluid">
+              <a class="navbar-brand"  id="yn" href="#">yahoo<i>!</i> <span class="yNews text-dark">news</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" id="sBtn" type="submit"> <svg id="svgBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg></button>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+          <!-- 3rd navbar -->
+
+          <div class="row">
+            <div class="col-md-8">
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-transparent" id="ThirdNav">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">News</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">US</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Politics</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">World</a>
+                  </li>            
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">COVID-19</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Climate Change</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Health</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Science</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Originals</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+                  </li>   
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+            <div class="col-md-4"></div>
+        </div>
+
+
+        <div class="row" id="ContDivTwo">
+
+            <div class="col-md-8">
+                <div class="row" id="ContDivTwoInner">
+         
+                    <div class="col-md-8" id="Thirdinner">
+                        <img src="https://s.yimg.com/uu/api/res/1.2/HQHNQfo2WVTCGYdxf6xBkA--~B/Zmk9c3RyaW07aD00MDQ7cT05NTt3PTcyMDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2022-11/27dd89b0-5e78-11ed-b3fd-5c5bf6b016da.cf.webp" alt="" >
+                    </div>
+                    <div class="col-md-4" id="ColMdT">
+                        <h3>How crime became a winning issue for Republicians</h3>
+                        <p>The real picture of crime in the U.S. is far more complicated. After declining steadily for decades, murders increased significantly in 2020 at the height of the coronavirus pandemic.</p>
+                    </div>
+                </div>
+
+                <div class="container-fluid" id="smallImgCont">
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://s.yimg.com/uu/api/res/1.2/AT46GvRqVidyG5XZyv.ivg--~B/Zmk9c3RyaW07aD0xNjA7cT04MDt3PTM0MDthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/nbc_news_122/ac12b79e4618a70ac11cfc3978e7644f.cf.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title.</p>
+                    </div>
+                  </div>
+
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://s.yimg.com/uu/api/res/1.2/s55tY1XoLm_avH8VxbUZgw--~B/Zmk9c3RyaW07aD0xNjA7cT04MDt3PTM0MDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2022-11/18573f70-5e02-11ed-bb9f-61a9771b019c.cf.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title.</p>
+                    </div>
+                  </div>
+
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://s.yimg.com/uu/api/res/1.2/jYRi0gSTgTsIuZ.GcyGKcA--~B/Zmk9c3RyaW07aD0xNjA7cT04MDt3PTM0MDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2022-11/26f842f0-5ded-11ed-aed7-bc2af6d7dfa0.cf.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title .</p>
+                    </div>
+                  </div>
+
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://s.yimg.com/uu/api/res/1.2/rTRk8PVZIXgaINgoGr4Rwg--~B/Zmk9c3RyaW07aD0xNjA7cT04MDt3PTM0MDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2022-11/430be700-5e0e-11ed-9fd5-b96c32dd8844.cf.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title </p>
+                    </div>
+                  </div>
+
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://s.yimg.com/uu/api/res/1.2/Icazrgd1hBcH_b7JVNi_Qw--~B/Zmk9c3RyaW07aD0xNjA7cT04MDt3PTM0MDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2021-05/f3fd69f0-b26e-11eb-bffe-cd1f581a6ff2.cf.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title.</p>
+                    </div>
+                  </div>
+
+                  
+                </div>
+
+                <div class="container-fluid" id="oneLineContent">
+
+                  <div class="row" class="oneLineContent_row" style="border:2px">
+                    <div class="col-md-3"> 
+                      <img src="download.jpeg" alt="">
+                    </div>
+                    <div class="col-md-8" >
+                      <h5>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h5>
+                      <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry, which has been experiencing years of seemingly exponential growth in the market.</p>
+                    </div>
+                  </div>
+
+                  <div class="row" class="oneLineContent_row" style="margin: 15px 0;" >
+                    <div class="col-md-3"> 
+                      <img src="download.jpeg" alt="">
+                    </div>
+                    <div class="col-md-8">
+                      <h5>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h5>
+                      <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry, which has been experiencing years of seemingly exponential growth in the market.</p>
+                    </div>
+                  </div>
+
+                  <div class="row" class="oneLineContent_row" style="margin: 15px 0;">
+                    <div class="col-md-3"> 
+                      <img src="download.jpeg" alt="">
+                    </div>
+                    <div class="col-md-8">
+                      <h5>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h5>
+                      <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry, which has been experiencing years of seemingly exponential growth in the market.</p>
+
+                        <div class="row" id="TwoLine_Inside">
+                          <div class="col-md-6">
+                            <div class="row" class="TwoLineContent_row">
+                              <div class="col-md-5"> 
+                                <img src="download.jpeg" alt="" width="100px">
+                              </div>
+                              <div class="col-md-7">
+                                <h3>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h3>
+                                <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry,</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="row" class="TwoLineContent_row" >
+                              <div class="col-md-5"> 
+                                <img src="download.jpeg" alt="" width="100px">
+                              </div>
+                              <div class="col-md-7">
+                                <h3>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h3>
+                                <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry,.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row" class="oneLineContent_row" style="margin: 15px 0;">
+                    <div class="col-md-3"> 
+                      <img src="download.jpeg" alt="">
+                    </div>
+                    <div class="col-md-8">
+                      <h5>California sports betting bills deemed 'critical to the future of the entire industry' likely to fail</h5>
+                      <p>The 2022 midterm elections had the potential to become one of the biggest days in the sports betting industry, which has been experiencing years of seemingly exponential growth in the market.</p>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                
+
+            </div>
+            <div class="col-md-4" class="sideart">
+                <div class="card" style="width: 18rem;" id="SideCard">
+                    <img src="https://s.yimg.com/cv/apiv2/default/20181001/360RR/header-3@2x.png" class="card-img-top" alt="..." height="50px">
+                    <div class="card-body">
+                      <h5 class="card-title">The shifting power of Latino voters</h5>
+                      <p class="card-text" id="smallImgP">“It seems clear that Democrats seriously erred in 2020 by lumping Hispanics in with other ‘people of color.’”</p>
+                      <button class="btn btn-primary" id="article_btn">Know More</button>
+                    </div>
+                  </div>
+
+
+                  <div class="card" style="width: 18rem; background-color: rgb(225, 222, 222); margin-top: 100px;" id="SideCard2">
+                    <!-- <img src="https://s.yimg.com/cv/apiv2/default/20181001/360RR/header-3@2x.png" class="card-img-top" alt="..." height="50px"> -->
+                    <iframe src="https://giphy.com/embed/DtzT5YiMxaKVW" height="270" frameBorder="0" class="giphy-embed"allowFullScreen></iframe><p><a href="https://giphy.com/gifs/app-chrome-extension-grammarly-DtzT5YiMxaKVW"></a></p>
+                    <h5 class="card-title">The Advertisement</h5>
+                  
+                  </div>
+            </div>
+
+
+
+
+
+       
+        </div>
+
+
+
+      </section>
+    
+</body>
+</html>
